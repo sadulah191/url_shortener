@@ -2,5 +2,6 @@ json.(link,
   :id,
   :url,
   :short_url,
-  :clicked
+  :clicked,
+  :title
  )

@@ -31,6 +31,7 @@ group :development, :test do
 end
 
 gem 'jbuilder', '~> 2.7'
+gem "resque"
 
 group :development do
   gem 'listen', '~> 3.2'

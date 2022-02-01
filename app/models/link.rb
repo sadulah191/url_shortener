@@ -5,6 +5,7 @@ class Link < ApplicationRecord
   validate :validate_url
   validates_uniqueness_of :short_url
   after_initialize :generate_short_url, if: :new_record?
+  after_create :update_title!
 
   scope :top_100_urls, -> { order("clicked DESC").limit(100) }
 
@@ -25,5 +26,9 @@ class Link < ApplicationRecord
     end
 
     self.short_url = "#{URI(url).host}/#{short_slug}"
+  end
+
+  def update_title!
+    UpdateTitleJob.perform_later(id)
   end
 end
